@@ -1,0 +1,31 @@
+<div class="panel panel-grid" *ngIf="layerService.layer">
+    <div class="panel-heading">
+        <div class="panel-title">
+            <span style="font-size: 14px;">属性表</span>
+        </div>
+        <div class="panel-close">
+            <i class="fas fa-times" (click)="close()"></i>
+        </div>
+    </div>
+    <div class="panel-body" style="padding: 2px 10px;">
+        <nz-table #table nzBordered [nzData]="layerService.layer.featureClass.features">
+            <thead>
+            <tr>
+                <th *ngFor="let field of layerService.layer.featureClass.fields">
+                    {{field.name}}
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let feature of table.data;">
+                <td *ngFor="let field of layerService.layer.featureClass.fields">
+                    {{feature.properties[field.name]}}
+                </td>
+            </tr>
+            </tbody>
+        </nz-table>
+    </div>
+</div>
+
+
+
